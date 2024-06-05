@@ -11,11 +11,11 @@ npm install bs-breakpoint-detect
 ## Setup
 First, import dependency
 ```javascript
-import bsBreakpointDetect from 'bsBreakpointDetect';
+import BsBreakpointDetect from 'bs-breakpoint-detect';
 ```
 
 ## Create new Instance and fire init:
 ```javascript
-const bpDetect = new bsBreakpointDetect();
-bpDetect.init();
+const bpDetect = new BsBreakpointDetect(); // create new instance
+bpDetect.init(); // call init fn
 ```
