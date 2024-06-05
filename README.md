@@ -1,2 +1,21 @@
 # bs-breakpoint-detect
-Detects the current bootstrap breakpoint
+A vanilla javascript class to detects the current bootstrap breakpoint which
+- adds value to `window.currentBreakpoint` variable,
+- adds value to body `data-current-bp-breakpoint` attribute.
+
+## Installation
+```npm
+npm install bs-breakpoint-detect
+```
+
+## Setup
+First, import dependency
+```javascript
+import bsBreakpointDetect from 'bsBreakpointDetect';
+```
+
+## Create new Instance and fire init:
+```javascript
+const bpDetect = new bsBreakpointDetect();
+bpDetect.init();
+```
