@@ -15,13 +15,14 @@ export default class BsBreakpointDetect {
     let currentBreakpointClass = '';
 
     this.bsBreakpointDetectBreakpoints.forEach((bp) => {
-      const bpClass = bp[1];
-      if (bodyClassList.contains(bpClass)) {
-        bodyClassList.remove(bpClass);
+      if (bp[1] == `bs-${breakpoint}`) {
+        const bpClass = bp[1];
+        if (bodyClassList.contains(bpClass)) bodyClassList.remove(bpClass);
+        currentBreakpointClass = this.bsBreakpointDetectBreakpoints[`bs-${bp[1]}`];
       }
     });
       
-    currentBreakpointClass = this.bsBreakpointDetectBreakpoints[`bs-${breakpoint}`];
+   
     bodyClassList.add(currentBreakpointClass);
   }
 
