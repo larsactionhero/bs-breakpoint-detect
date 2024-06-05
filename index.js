@@ -25,12 +25,12 @@ export default class bsBreakpointDetect {
   }
   
   init() {
-    document.addEventListener('DOMContentLoaded', bsbDetectGetBSBreakPoint);
+    document.addEventListener('DOMContentLoaded', this.bsbDetectGetBSBreakPoint);
   
     let bsbDetectResizeTimer = null;
     document.addEventListener('resize', () => {
       if (bsbDetectResizeTimer) clearTimeout;
-      bsbDetectResizeTimer = setTimeout(() => bsbDetectGetBSBreakPoint, 100);
+      bsbDetectResizeTimer = setTimeout(() => this.bsbDetectGetBSBreakPoint, 100);
     });
   }
 }
