@@ -1,6 +1,6 @@
 {
   "name": "bs-breakpoint-detect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detects the current bootstrap breakpoint",
   "main": "index.js",
   "author": "Lars Ortlepp",
