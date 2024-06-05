@@ -6,24 +6,21 @@ export default class BsBreakpointDetect {
       ['--bs-breakpoint-md', 'bs-md'],
       ['--bs-breakpoint-lg', 'bs-lg'],
       ['--bs-breakpoint-xl', 'bs-xl'],
-      ['--bs-breakpoint-xxl', 'bs-xxl']
+      ['--bs-breakpoint-xxl', 'bs-xxl'],
     ];
+
+    this.currentBreakpointClass = '';
   }
 
-  bsBreakpointDetectSetBodyClass(breakpoint) {
+  bsBreakpointDetectSetBodyClass() {
     const bodyClassList = document.body.classList;
-    let currentBreakpointClass = '';
-
     this.bsBreakpointDetectBreakpoints.forEach((bp) => {
-      if (bp[1] == `bs-${breakpoint}`) {
-        const bpClass = bp[1];
-        if (bodyClassList.contains(bpClass)) bodyClassList.remove(bpClass);
-        currentBreakpointClass = this.bsBreakpointDetectBreakpoints[`bs-${bp[1]}`];
+      if (bodyClassList.contains(bp[1])) {
+        bodyClassList.remove(bp[1]);
       }
     });
-      
-   
-    bodyClassList.add(currentBreakpointClass);
+
+    bodyClassList.add(this.currentBreakpointClass);
   }
 
   bsBreakpointDetectGetSize() {
@@ -32,9 +29,12 @@ export default class BsBreakpointDetect {
       const value = window.getComputedStyle(doc).getPropertyValue(bp[0]);
       const bpStr = bp[0].slice(-2);
 
+      console.log(bpStr);
+
       if (window.matchMedia(`(min-width: ${value})`).matches) {
         // document.body.dataset.bsBreakpoint = bpStr;
-        this.bsBreakpointDetectSetBodyClass(bpStr);
+        this.currentBreakpointClass = `bs-${bpStr}`;
+        this.bsBreakpointDetectSetBodyClass();
         window.bsBreakpoint = bpStr;
       }
     });
