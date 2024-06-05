@@ -11,7 +11,7 @@ export default class bsBreakpointDetect {
     ];
   }
 
-  bsbDetectGetBSBreakPoint() {
+  bsBreakpointDetectGetSize() {
     let matches = null;
     this.bsBreakpointSizes.forEach((size) => {
       const doc = document.documentElement;
@@ -25,12 +25,12 @@ export default class bsBreakpointDetect {
   }
   
   init() {
-    document.addEventListener('DOMContentLoaded', this.bsbDetectGetBSBreakPoint);
+    document.addEventListener('DOMContentLoaded', this.bsBreakpointDetectGetSize);
   
-    let bsbDetectResizeTimer = null;
+    let bsBreakpointDetectResizeTimer = null;
     document.addEventListener('resize', () => {
-      if (bsbDetectResizeTimer) clearTimeout;
-      bsbDetectResizeTimer = setTimeout(() => this.bsbDetectGetBSBreakPoint, 100);
+      if (bsBreakpointDetectResizeTimer) clearTimeout;
+      bsBreakpointDetectResizeTimer = setTimeout(() => this.bsBreakpointDetectGetSize, 100);
     });
   }
 }
