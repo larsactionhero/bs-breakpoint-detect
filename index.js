@@ -1,40 +1,42 @@
-export default class bsBreakpointDetect {
+export default class BsBreakpointDetect {
   constructor() {
     this.bsBreakpointDetectBPSizes = [
-      '--bs-breakpoint-xxl',
-      '--bs-breakpoint-xl',
-      '--bs-breakpoint-lg',
-      '--bs-breakpoint-md',
-      '--bs-breakpoint-sm',
       '--bs-breakpoint-xs',
+      '--bs-breakpoint-sm',
+      '--bs-breakpoint-md',
+      '--bs-breakpoint-lg',
+      '--bs-breakpoint-xl',
+      '--bs-breakpoint-xxl',
     ];
   }
 
   bsBreakpointDetectGetSize() {
-    let matches = null;
-
-    this.bsBreakpointDetectBPSizes.forEach((size) => {
+    this.bsBreakpointDetectBPSizes.forEach((bpSize) => {
       const doc = document.documentElement;
-      const value = window.getComputedStyle(doc).getPropertyValue(`--breakpoint-${size}`);
-      matches = window.matchMedia(`(min-width: ${value})`).matches;
-    });
+      const value = window.getComputedStyle(doc).getPropertyValue(bpSize);
+      const size = bpSize.slice(-2);
 
-    window.currentBreakpoint = matches;
-    document.body.dataset.currentBpBreakpoint = matches;
-    return matches;
+      if (window.matchMedia(`(min-width: ${value})`).matches) {
+        document.body.dataset.bsBreakpoint = size;
+        window.bsBreakpoint = size;
+      }
+    });
   }
 
-  init() {
-    document.addEventListener('DOMContentLoaded', () => {
-      this.bsBreakpointDetectGetSize();
-    });
+  initResizeListener() {
+    let resizeTimer = null;
 
-    let timer = null;
-    document.addEventListener('resize', () => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
+    // resize reset for mobile menu
+    window.addEventListener('resize', () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
         this.bsBreakpointDetectGetSize();
       }, 100);
     });
+  }
+
+  init() {
+    this.bsBreakpointDetectGetSize();
+    this.initResizeListener();
   }
 }
