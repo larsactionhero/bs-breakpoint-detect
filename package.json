@@ -4,5 +4,9 @@
   "description": "Detects the current bootstrap breakpoint",
   "main": "index.js",
   "author": "Lars Ortlepp",
-  "license": "GPL-3.0 license"
+  "license": "GPL-3.0 license",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:larsactionhero/bs-breakpoint-detect.git"
+  }
 }
