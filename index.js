@@ -1,7 +1,7 @@
 
 export default class bsBreakpointDetect {
   constructor() {
-    this.bsbDetectBreakpointSizes = [
+    this.bsBreakpointDetectBPSizes = [
       '--bs-breakpoint-xxl',
       '--bs-breakpoint-xl',
       '--bs-breakpoint-lg',
@@ -13,7 +13,7 @@ export default class bsBreakpointDetect {
 
   bsBreakpointDetectGetSize() {
     let matches = null;
-    this.bsBreakpointSizes.forEach((size) => {
+    this.bsBreakpointDetectBPSizes.forEach((size) => {
       const doc = document.documentElement;
       const value = window.getComputedStyle(doc).getPropertyValue(`--breakpoint-${size}`);
       matches = window.matchMedia(`(min-width: ${value})`).matches;
