@@ -12,7 +12,7 @@ export default class BsBreakpointDetect {
 
   bsBreakpointDetectSetBodyClass(breakpoint) {
     const bodyClassList = document.body.classList;
-    const currentBreakpointClass = '';
+    let currentBreakpointClass = '';
 
     this.bsBreakpointDetectBreakpoints.forEach((bp) => {
       const bpClass = bp[1];
@@ -29,12 +29,12 @@ export default class BsBreakpointDetect {
     this.bsBreakpointDetectBreakpoints.forEach((bp) => {
       const doc = document.documentElement;
       const value = window.getComputedStyle(doc).getPropertyValue(bp[0]);
-      const bp = bp[0].slice(-2);
+      const bpStr = bp[0].slice(-2);
 
       if (window.matchMedia(`(min-width: ${value})`).matches) {
-        // document.body.dataset.bsBreakpoint = bp;
-        this.bsBreakpointDetectSetBodyClass(bp);
-        window.bsBreakpoint = bp;
+        // document.body.dataset.bsBreakpoint = bpStr;
+        this.bsBreakpointDetectSetBodyClass(bpStr);
+        window.bsBreakpoint = bpStr;
       }
     });
   }
