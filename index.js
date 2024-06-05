@@ -12,7 +12,7 @@ export default class bsBreakpointDetect {
 
   bsBreakpointDetectGetSize() {
     let matches = null;
-    
+
     this.bsBreakpointDetectBPSizes.forEach((size) => {
       const doc = document.documentElement;
       const value = window.getComputedStyle(doc).getPropertyValue(`--breakpoint-${size}`);
@@ -31,7 +31,7 @@ export default class bsBreakpointDetect {
 
     let timer = null;
     document.addEventListener('resize', () => {
-      if (bsBreakpointDetectResizeTimer) clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         this.bsBreakpointDetectGetSize();
       }, 100);
