@@ -1,4 +1,3 @@
-
 export default class bsBreakpointDetect {
   constructor() {
     this.bsBreakpointDetectBPSizes = [
@@ -7,7 +6,7 @@ export default class bsBreakpointDetect {
       '--bs-breakpoint-lg',
       '--bs-breakpoint-md',
       '--bs-breakpoint-sm',
-      '--bs-breakpoint-xs'
+      '--bs-breakpoint-xs',
     ];
   }
 
@@ -18,18 +17,18 @@ export default class bsBreakpointDetect {
       const value = window.getComputedStyle(doc).getPropertyValue(`--breakpoint-${size}`);
       matches = window.matchMedia(`(min-width: ${value})`).matches;
     });
-  
+
     window.currentBreakpoint = matches;
     document.body.dataset.currentBpBreakpoint = matches;
     return matches;
   }
-  
+
   init() {
     document.addEventListener('DOMContentLoaded', this.bsBreakpointDetectGetSize);
-  
+
     let bsBreakpointDetectResizeTimer = null;
     document.addEventListener('resize', () => {
-      if (bsBreakpointDetectResizeTimer) clearTimeout;
+      if (bsBreakpointDetectResizeTimer) clearTimeout(bsBreakpointDetectResizeTimer);
       bsBreakpointDetectResizeTimer = setTimeout(() => this.bsBreakpointDetectGetSize, 100);
     });
   }
