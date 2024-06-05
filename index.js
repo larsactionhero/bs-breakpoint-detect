@@ -21,7 +21,7 @@ export default class BsBreakpointDetect {
       }
     });
       
-    currentBreakpointClass= this.bsBreakpointDetectBreakpoints[breakpoint];
+    currentBreakpointClass = this.bsBreakpointDetectBreakpoints[`bs-${breakpoint}`];
     bodyClassList.add(currentBreakpointClass);
   }
 
