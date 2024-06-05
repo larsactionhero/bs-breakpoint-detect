@@ -1,24 +1,40 @@
 export default class BsBreakpointDetect {
   constructor() {
-    this.bsBreakpointDetectBPSizes = [
-      '--bs-breakpoint-xs',
-      '--bs-breakpoint-sm',
-      '--bs-breakpoint-md',
-      '--bs-breakpoint-lg',
-      '--bs-breakpoint-xl',
-      '--bs-breakpoint-xxl',
+    this.bsBreakpointDetectBreakpoints = [
+      ['--bs-breakpoint-xs', 'bs-xs'],
+      ['--bs-breakpoint-sm', 'bs-sm'],
+      ['--bs-breakpoint-md', 'bs-md'],
+      ['--bs-breakpoint-lg', 'bs-lg'],
+      ['--bs-breakpoint-xl', 'bs-xl'],
+      ['--bs-breakpoint-xxl', 'bs-xxl']
     ];
   }
 
+  bsBreakpointDetectSetBodyClass(breakpoint) {
+    const bodyClassList = document.body.classList;
+    const currentBreakpointClass = '';
+
+    this.bsBreakpointDetectBreakpoints.forEach((bp) => {
+      const bpClass = bp[1];
+      if (bodyClassList.contains(bpClass)) {
+        bodyClassList.remove(bpClass);
+      }
+    });
+      
+    currentBreakpointClass= this.bsBreakpointDetectBreakpoints[breakpoint];
+    bodyClassList.add(currentBreakpointClass);
+  }
+
   bsBreakpointDetectGetSize() {
-    this.bsBreakpointDetectBPSizes.forEach((bpSize) => {
+    this.bsBreakpointDetectBreakpoints.forEach((bp) => {
       const doc = document.documentElement;
-      const value = window.getComputedStyle(doc).getPropertyValue(bpSize);
-      const size = bpSize.slice(-2);
+      const value = window.getComputedStyle(doc).getPropertyValue(bp[0]);
+      const bp = bp[0].slice(-2);
 
       if (window.matchMedia(`(min-width: ${value})`).matches) {
-        document.body.dataset.bsBreakpoint = size;
-        window.bsBreakpoint = size;
+        // document.body.dataset.bsBreakpoint = bp;
+        this.bsBreakpointDetectSetBodyClass(bp);
+        window.bsBreakpoint = bp;
       }
     });
   }
