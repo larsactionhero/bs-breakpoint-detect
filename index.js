@@ -27,7 +27,7 @@ export default class bsBreakpointDetect {
   init() {
     document.addEventListener('DOMContentLoaded', bsbDetectGetBSBreakPoint);
   
-    const bsbDetectResizeTimer = null;
+    let bsbDetectResizeTimer = null;
     document.addEventListener('resize', () => {
       if (bsbDetectResizeTimer) clearTimeout;
       bsbDetectResizeTimer = setTimeout(() => bsbDetectGetBSBreakPoint, 100);
