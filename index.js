@@ -30,7 +30,7 @@ export default class BsBreakpointDetect {
       const bpStr = bp[0].slice(-2);
 
       if (window.matchMedia(`(min-width: ${value})`).matches) {
-        // document.body.dataset.bsBreakpoint = bpStr;
+        document.body.dataset.bsBreakpoint = bpStr;
         this.currentBreakpointClass = `bs-${bpStr}`;
         this.bsBreakpointDetectSetBodyClass();
         window.bsBreakpoint = bpStr;
