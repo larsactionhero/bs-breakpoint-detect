@@ -40,8 +40,7 @@ export default class BsBreakpointDetect {
 
   initResizeListener() {
     let resizeTimer = null;
-
-    // resize reset for mobile menu
+    
     window.addEventListener('resize', () => {
       if (resizeTimer) clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
